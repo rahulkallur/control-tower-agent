@@ -42,6 +42,8 @@ func HandleEvent(data []byte, clientID string, h *hub.Hub) {
 		handlers.HandleSaveUser(incoming.Data, h)
 	case "deleteUser":
 		handlers.HandleDeleteUser(incoming.Data, h)
+	case "suspendUser":
+		handlers.HandleSuspendUser(incoming.Data, h)
 	case "billingContract":
 		handlers.HandleContract(incoming.Data, h)
 	case "meterEvent":

@@ -15,3 +15,13 @@ func HandleDeleteUser(data interface{}, h *hub.Hub) {
 	msg, _ := json.Marshal(response)
 	h.Broadcast <- msg
 }
+
+func HandleSuspendUser(data interface{}, h *hub.Hub) {
+	// Implement the logic to suspend a user
+	response := EventResponse{
+		Event: "suspendUser",
+		Data:  data,
+	}
+	msg, _ := json.Marshal(response)
+	h.Broadcast <- msg
+}
