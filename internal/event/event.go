@@ -46,6 +46,8 @@ func HandleEvent(data []byte, clientID string, h *hub.Hub) {
 		handlers.HandleSuspendUser(incoming.Data, h)
 	case "updatePassword":
 		handlers.HandleUpdatePassword(incoming.Data, h)
+	case "updatePersonalDetails":
+		handlers.HandleUpdatePersonalDetails(incoming.Data, h)
 	case "updateRole":
 		handlers.HandleUpdateRole(incoming.Data, h)
 	case "billingContract":

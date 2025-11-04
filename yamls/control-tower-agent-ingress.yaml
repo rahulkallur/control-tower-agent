@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: control-tower-agent-ingress
+  namespace: azure-marketplace
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "condense-tls-secret"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      set $forwarded_client_ip "";
+      if ($http_x_forwarded_for ~ "^([^,]+)") {
+        set $forwarded_client_ip $1;
+      }
+      set $client_ip $remote_addr;
+      if ($forwarded_client_ip != "") {
+        set $client_ip $forwarded_client_ip;
+      }
+    nginx.ingress.kubernetes.io/upstream-hash-by: "$client_ip"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  tls:
+    - hosts:
+        - central-tower-dev.zeliot.in
+      secretName: condense-tls-secret
+  rules:
+    - http:
+        paths:
+          - path: /web-agent(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: control-tower-agent-service
+                port:
+                  number: 7108
+      host: central-tower-dev.zeliot.in

@@ -45,3 +45,13 @@ func HandleUpdateRole(data interface{}, h *hub.Hub) {
 	msg, _ := json.Marshal(response)
 	h.Broadcast <- msg
 }
+
+func HandleUpdatePersonalDetails(data interface{}, h *hub.Hub) {
+	// Implement the logic to update a user's personal details
+	response := EventResponse{
+		Event: "updatePersonalDetails",
+		Data:  data,
+	}
+	msg, _ := json.Marshal(response)
+	h.Broadcast <- msg
+}

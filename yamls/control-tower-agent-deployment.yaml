@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: control-tower-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: control-tower-agent
+  template:
+    metadata:
+      labels:
+        app: control-tower-agent
+    spec:
+      containers:
+        - name: control-tower-agent
+          image: 794213689372.dkr.ecr.ap-south-1.amazonaws.com/control-tower-agent:1.0.3
+          ports:
+            - containerPort: 8000
+          env:
+            - name: SERVICE_PORT
+              value: "8000"
+            - name: ENCRYPTION_KEY
+              value: "CoNdEnSeJwTSeCrEtCoNdEnSeJwTSeCr"
+            - name: SECRET_KEY
+              value: "onJK7omKn5xdy0M1tBVIRBpLsdpTZ7xMLgLNS3QIrew"
+            - name: GIN_MODE
+              value: "release"
+          imagePullPolicy: Always
