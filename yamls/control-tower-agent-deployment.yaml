@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: control-tower-agent
-          image: 794213689372.dkr.ecr.ap-south-1.amazonaws.com/control-tower-agent:1.0.3
+          image: 794213689372.dkr.ecr.ap-south-1.amazonaws.com/control-tower-agent:1.0.4
           ports:
             - containerPort: 8000
           env:
