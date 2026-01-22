@@ -66,6 +66,8 @@ func HandleEvent(data []byte, clientID string, h *hub.Hub) {
 		handlers.HandleRotateKeys(incoming.Data, h)
 	case "tffTokens":
 		handlers.HandleTffTokens(incoming.Data, h)
+	case "tffTokenResponse":
+		handlers.HandleTffTokenResponse(incoming.Data, h)
 	default:
 		log.Printf("unknown event: %s", incoming.Event)
 	}

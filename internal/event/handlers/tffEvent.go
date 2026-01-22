@@ -15,3 +15,13 @@ func HandleTffTokens(data interface{}, h *hub.Hub) {
 	msg, _ := json.Marshal(response)
 	h.Broadcast <- msg
 }
+
+func HandleTffTokenResponse(data interface{}, h *hub.Hub) {
+	// Implement the logic to handle TFF token responses
+	response := EventResponse{
+		Event: "tffTokenResponse",
+		Data:  data,
+	}
+	msg, _ := json.Marshal(response)
+	h.Broadcast <- msg
+}
